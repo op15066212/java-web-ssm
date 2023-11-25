@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 配置视图解析器ViewResolver，负责将视图名解析成具体的视图技术，比如解析成html、jsp等 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 前缀属性 -->
+        <property name="prefix" value="/views/"/>
+        <!-- 后缀属性 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <context:component-scan base-package="controller"/>
+    <!--配置默认的Servlet请求处理器-->
+    <mvc:default-servlet-handler/>
+    <!-- 基于注解的处理器映射器和适配器的配置 -->
+    <mvc:annotation-driven/>
+</beans>

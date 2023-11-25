@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.mapper.commentMapper">
+    <resultMap id="ResultMap" type="dao.bean.comment">
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="uname" property="uname"/>
+        <result column="date" property="date"/>
+        <result column="content" property="content"/>
+    </resultMap>
+    <select id="selectById" resultMap="ResultMap">
+        select *
+        from comment
+        where cid = #{cid}
+    </select>
+    <select id="selectAll" resultMap="ResultMap">
+        select *
+        from comment
+    </select>
+    <insert id="insert" parameterType="dao.bean.book_order">
+        insert into comment (cid, bid, uname, date, content)
+        values (#{cid}, #{bid}, #{uname}, #{date}, #{content})
+    </insert>
+    <update id="update" parameterType="dao.bean.book_order">
+        update comment
+        set bid = #{bid},
+        uname = #{uname},
+        date = #{date},
+        content = #{content}
+        where cid = #{cid}
+    </update>
+    <delete id="deleteById">
+        delete
+        from comment
+        where cid = #{cid}
+    </delete>
+    <select id="selectLike" resultMap="ResultMap" parameterType="String">
+        select *
+        from comment
+        where cid like concat('%', #{keyword}, '%')
+        or bid like concat('%', #{keyword}, '%')
+        or uname like concat('%', #{keyword}, '%')
+        or date like concat('%', #{keyword}, '%')
+        or content like concat('%', #{keyword}, '%')
+    </select>
+</mapper>

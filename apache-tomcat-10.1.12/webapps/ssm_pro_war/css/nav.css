@@ -1,0 +1,34 @@
+.navbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #f2f2f2;
+}
+
+.navbar a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.logout {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff5959; /* Ìí¼ÓºìÉ«±³¾° */
+}
+
+.username {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: #39acf5; /* Ìí¼ÓºìÉ«±³¾° */
+}
