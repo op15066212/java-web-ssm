@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.mapper.orderDetailMapper">
+    <resultMap id="ResultMap" type="dao.bean.order_detail">
+        <result column="id" property="id"/>
+        <result column="order_id" property="order_id"/>
+        <result column="book_id" property="book_id"/>
+        <result column="book_num" property="book_num"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <select id="selectById" resultMap="ResultMap">
+        select *
+        from order_detail
+        where id = #{id}
+    </select>
+    <select id="selectAll" resultMap="ResultMap">
+        select *
+        from order_detail
+    </select>
+    <insert id="insert" parameterType="dao.bean.book_order">
+        insert into order_detail (id, order_id, book_id, book_num, status)
+        values (#{id}, #{order_id}, #{book_id}, #{book_num}, #{status})
+    </insert>
+    <update id="update" parameterType="dao.bean.book_order">
+        update order_detail
+        set order_id = #{order_id},
+        book_id = #{book_id},
+        book_num = #{book_num},
+        status = #{status}
+        where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete
+        from order_detail
+        where id = #{id}
+    </delete>
+    <select id="selectLike" resultMap="ResultMap" parameterType="String">
+        select *
+        from order_detail
+        where id like concat('%', #{keyword}, '%')
+        or order_id like concat('%', #{keyword}, '%')
+        or book_id like concat('%', #{keyword}, '%')
+        or book_num like concat('%', #{keyword}, '%')
+        or status like concat('%', #{keyword}, '%')
+    </select>
+</mapper>

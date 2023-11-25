@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.mapper.bookOrderMapper">
+    <resultMap id="ResultMap" type="dao.bean.book_order">
+        <result column="oid" property="oid"/>
+        <result column="date" property="date"/>
+        <result column="oname" property="oname"/>
+        <result column="address" property="address"/>
+        <result column="state" property="state"/>
+        <result column="uid" property="uid"/>
+    </resultMap>
+    <select id="selectAll" resultMap="ResultMap">
+        select *
+        from book_order
+    </select>
+    <select id="selectByNo" resultMap="ResultMap">
+        select *
+        from book_order
+        where oid = #{oid}
+    </select>
+    <insert id="insert" parameterType="dao.bean.book_order">
+        insert into book_order (oid, date, oname, address, state, uid)
+        values (#{oid}, #{date}, #{oname}, #{address}, #{state}, #{uid})
+    </insert>
+    <update id="update" parameterType="dao.bean.book_order">
+        update book_order
+        set oid=#{oid},
+        date=#{date},
+        oname=#{oname},
+        address=#{address},
+        state=#{state},
+        uid=#{uid}
+        where oid = #{oid}
+    </update>
+    <delete id="deleteByNo">
+        delete
+        from book_order
+        where oid = #{oid}
+    </delete>
+    <select id="selectLike" resultMap="ResultMap" parameterType="String">
+        select *
+        from book_order
+        where oid like concat('%', #{keyword}, '%')
+        or date like concat('%', #{keyword}, '%')
+        or oname like concat('%', #{keyword}, '%')
+        or address like concat('%', #{keyword}, '%')
+        or state like concat('%', #{keyword}, '%')
+        or uid like concat('%', #{keyword}, '%')
+    </select>
+</mapper>

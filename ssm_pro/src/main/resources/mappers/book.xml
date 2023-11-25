@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.mapper.bookMapper">
+    <resultMap id="ResultMap" type="dao.bean.book">
+        <result column="bid" property="bid"/>
+        <result column="bname" property="bname"/>
+        <result column="detail" property="detail"/>
+        <result column="price" property="price"/>
+        <result column="writer" property="writer"/>
+        <result column="printer" property="printer"/>
+        <result column="date" property="date"/>
+        <result column="type" property="type"/>
+        <result column="image" property="image"/>
+        <result column="store" property="store"/>
+    </resultMap>
+    <select id="selectAll" resultMap="ResultMap">
+        select *
+        from book
+    </select>
+    <select id="selectByBid" resultMap="ResultMap">
+        select *
+        from book
+        where bid = #{bid}
+    </select>
+    <insert id="insert" parameterType="dao.bean.book">
+        insert into book
+        (bid,
+        bname,
+        detail,
+        price,
+        writer,
+        printer,
+        date,
+        type,
+        image,
+        store)
+        values (#{bid},
+        #{bname},
+        #{detail},
+        #{price},
+        #{writer},
+        #{printer},
+        #{date},
+        #{type},
+        #{image},
+        #{store})
+    </insert>
+    <update id="update" parameterType="dao.bean.book">
+        update book
+        set bname = #{bname},
+        detail = #{detail},
+        price = #{price},
+        writer = #{writer},
+        printer = #{printer},
+        date = #{date},
+        type = #{type},
+        image = #{image},
+        store = #{store}
+        where bid = #{bid}
+    </update>
+    <delete id="deleteByBid">
+        delete
+        from book
+        where bid = #{bid}
+    </delete>
+    <select id="selectLike" resultMap="ResultMap" parameterType="String">
+        select *
+        from book
+        where bid like concat('%', #{value}, '%')
+        or bname like concat('%', #{value}, '%')
+        or detail like concat('%', #{value}, '%')
+        or price like concat('%', #{value}, '%')
+        or writer like concat('%', #{value}, '%')
+        or printer like concat('%', #{value}, '%')
+        or date like concat('%', #{value}, '%')
+        or type like concat('%', #{value}, '%')
+        or store like concat('%', #{value}, '%')
+    </select>
+</mapper>
