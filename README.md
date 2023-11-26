@@ -2,7 +2,7 @@
 
  采用最新的 maven。
 
-使用 IntelliJ-IDEA 打开最项目 ssm-pro 即可使用。
+使用 IntelliJ-IDEA 打开最项目 ssm_pro 即可使用。
 
 使用 apache-tomcat-10.1.12。
 
