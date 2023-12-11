@@ -18,6 +18,7 @@ public class loginController {
     @RequestMapping("/login")
     public String login(user it, Model model, HttpServletRequest request, HttpSession session) throws IOException {
         model.addAttribute("Login", it);
+        session.setAttribute("keyname", it.getUname());
         String username = it.getUname();
         String password = it.getPassword();
         if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
